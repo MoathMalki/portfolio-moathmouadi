@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Moath Mouadi | Software Engineer</title>
+<meta name="description" content="Moath Mouadi — Junior Software Engineer from Ramallah, Palestine. Backend-focused full-stack developer working with Spring Boot, FastAPI, React and PostgreSQL.">
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -15,6 +16,8 @@
   }
   html { scroll-behavior: smooth; }
   body { font-family: 'Syne', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -23,7 +26,7 @@
     background: rgba(10,10,15,0.85); backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
   }
-  .nav-logo { font-family: 'Space Mono', monospace; font-size: 1rem; color: var(--accent); letter-spacing: 2px; }
+  .nav-logo { font-family: 'Space Mono', monospace; font-size: 1rem; color: var(--accent); letter-spacing: 2px; text-decoration: none; }
   .nav-links { display: flex; gap: 2.5rem; }
   .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.85rem; letter-spacing: 0.5px; transition: color 0.2s; }
   .nav-links a:hover { color: var(--text); }
@@ -64,7 +67,12 @@
   .about-info { display: flex; flex-direction: column; gap: 1rem; }
   .info-item { display: flex; align-items: center; gap: 1rem; padding: 0.8rem 1.2rem; background: var(--card); border: 1px solid var(--border); border-radius: 6px; }
   .info-label { font-family: 'Space Mono', monospace; font-size: 0.72rem; color: var(--accent); min-width: 90px; letter-spacing: 0.5px; }
-  .info-val { font-size: 0.88rem; color: var(--text); }
+  .info-val { font-size: 0.88rem; color: var(--text); word-break: break-word; }
+  .info-val a { text-decoration: none; border-bottom: 1px dashed rgba(108,99,255,0.5); }
+  .info-val a:hover { color: var(--accent); }
+
+  .soft-skills { margin-top: 2rem; }
+  .soft-skills h3 { font-size: 0.8rem; font-weight: 700; color: var(--accent); letter-spacing: 0.5px; margin-bottom: 1rem; text-transform: uppercase; }
 
   #skills { background: var(--bg); }
   .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
@@ -73,14 +81,20 @@
   .skill-cat-name { font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 700; color: var(--accent); letter-spacing: 0.5px; margin-bottom: 1rem; text-transform: uppercase; }
   .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .skill-tag { font-size: 0.82rem; padding: 0.35rem 0.8rem; background: rgba(108,99,255,0.1); border: 1px solid rgba(108,99,255,0.25); border-radius: 4px; color: var(--text); }
+  .skill-note { font-size: 0.8rem; color: var(--muted); line-height: 1.6; margin-top: 0.9rem; }
 
   #projects { background: var(--bg2); }
   .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
   .project-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.8rem; transition: border-color 0.2s, transform 0.2s; display: flex; flex-direction: column; gap: 1rem; }
   .project-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+  .project-top { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
   .project-num { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--accent); opacity: 0.6; }
+  .project-badge { font-family: 'Space Mono', monospace; font-size: 0.65rem; padding: 0.2rem 0.6rem; border-radius: 2px; color: #0a0a0f; background: var(--accent2); letter-spacing: 0.5px; }
   .project-name { font-size: 1.15rem; font-weight: 700; color: var(--text); }
-  .project-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; flex: 1; }
+  .project-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+  .project-points { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+  .project-points li { font-size: 0.82rem; color: #a5a5b5; line-height: 1.6; padding-left: 1rem; position: relative; }
+  .project-points li::before { content: '▹'; position: absolute; left: 0; color: var(--accent); }
   .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
   .stack-tag { font-family: 'Space Mono', monospace; font-size: 0.68rem; padding: 0.2rem 0.6rem; background: rgba(255,101,132,0.1); border: 1px solid rgba(255,101,132,0.2); border-radius: 2px; color: var(--accent2); }
 
@@ -96,7 +110,7 @@
   .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
   .contact-text { color: #aaa; line-height: 1.9; font-size: 0.95rem; }
   .contact-links { display: flex; flex-direction: column; gap: 1rem; }
-  .contact-link { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.2rem; background: var(--card); border: 1px solid var(--border); border-radius: 6px; text-decoration: none; color: var(--text); font-size: 0.88rem; transition: border-color 0.2s, transform 0.2s; }
+  .contact-link { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.2rem; background: var(--card); border: 1px solid var(--border); border-radius: 6px; text-decoration: none; color: var(--text); font-size: 0.88rem; transition: border-color 0.2s, transform 0.2s; word-break: break-word; }
   .contact-link:hover { border-color: var(--accent); transform: translateX(4px); }
   .contact-link-icon { width: 32px; height: 32px; border-radius: 4px; background: rgba(108,99,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
   .contact-link-label { font-size: 0.7rem; color: var(--muted); margin-bottom: 2px; font-family: 'Space Mono', monospace; letter-spacing: 0.5px; }
@@ -105,106 +119,45 @@
 
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
- /* ================= RESPONSIVE ================= */
 
-/* Tablets */
-@media (max-width: 992px) {
-  nav {
-    padding: 1rem 2rem;
+  /* ================= RESPONSIVE ================= */
+  /* Tablets */
+  @media (max-width: 992px) {
+    nav { padding: 1rem 2rem; }
+    .hero-content { grid-template-columns: 1fr; text-align: center; }
+    .hero-desc { margin: 0 auto 2rem; }
+    .hero-btns { justify-content: center; }
+    .hero-photo-frame { width: 260px; height: 320px; margin-top: 2rem; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    section { padding: 4rem 2rem; }
   }
-
-  .hero-content {
-    grid-template-columns: 1fr;
-    text-align: center;
+  /* Mobile */
+  @media (max-width: 600px) {
+    nav { flex-direction: column; gap: 1rem; padding: 1rem; }
+    .nav-links { gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
+    .hero { padding: 9rem 1.5rem 3rem; }
+    .hero-name { font-size: 2rem; }
+    .hero-title { font-size: 0.9rem; }
+    .hero-desc { font-size: 0.9rem; }
+    .hero-photo-frame { width: 220px; height: 280px; }
+    .hero-stat-badge { right: -10px; bottom: -10px; padding: 0.6rem; }
+    .section-title { font-size: 1.6rem; }
+    .projects-grid, .skills-grid { grid-template-columns: 1fr; }
+    .edu-card { padding: 1.4rem; }
   }
-
-  .hero-desc {
-    margin: 0 auto 2rem;
-  }
-
-  .hero-btns {
-    justify-content: center;
-  }
-
-  .hero-photo-frame {
-    width: 260px;
-    height: 320px;
-    margin-top: 2rem;
-  }
-
-  .about-grid,
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-
-  section {
-    padding: 4rem 2rem;
-  }
-}
-
-/* Mobile */
-@media (max-width: 600px) {
-
-  nav {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-  }
-
-  .nav-links {
-    gap: 1.2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .hero {
-    padding: 6rem 1.5rem 3rem;
-  }
-
-  .hero-name {
-    font-size: 2rem;
-  }
-
-  .hero-title {
-    font-size: 0.9rem;
-  }
-
-  .hero-desc {
-    font-size: 0.9rem;
-  }
-
-  .hero-photo-frame {
-    width: 220px;
-    height: 280px;
-  }
-
-  .hero-stat-badge {
-    right: -10px;
-    bottom: -10px;
-    padding: 0.6rem;
-  }
-
-  .section-title {
-    font-size: 1.6rem;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-}
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="nav-logo">MM.</div>
+  <a href="#home" class="nav-logo">MM.</a>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
@@ -222,9 +175,10 @@
       <div class="hero-tag">// Available for opportunities</div>
       <h1 class="hero-name">Moath<br><span>Jehad</span><br>Mouadi</h1>
       <div class="hero-title">Backend-Focused Full-Stack Developer</div>
-      <p class="hero-desc">Motivated Junior Software Engineer focused on backend systems (Spring Boot) and full-stack development with React. Passionate about building scalable, real-world applications.</p>
+      <p class="hero-desc">Junior Software Engineer building backend systems with Spring Boot and FastAPI, connected to clean React and TypeScript frontends. I care about code that is clean, maintainable, and ready to scale.</p>
       <div class="hero-btns">
         <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="Moath_Mouadi_CV.pdf" class="btn-outline" target="_blank" rel="noopener">Download CV</a>
         <a href="#contact" class="btn-outline">Get In Touch</a>
       </div>
     </div>
@@ -246,17 +200,30 @@
     <h2 class="section-title">About Me</h2>
     <div class="about-grid">
       <div class="about-text">
-        <p>I am a junior software engineer based in Ramallah, Palestine, and I completed my undergraduate studies in computer science at Birzeit University.</p>
-        <p>My passion lies in backend development — building robust, scalable systems using Spring Boot, FastAPI, and modern databases like PostgreSQL and MongoDB. I also have solid exposure to React on the frontend side.</p>
-        <p>I enjoy working in team environments, solving complex problems, and continuously improving my skills across the full development stack.</p>
+        <p>I'm a junior software engineer based in Ramallah, Palestine, and a Computer Science graduate of Birzeit University.</p>
+        <p>My main interest is backend development: designing REST APIs, modeling data, and building reliable services with Spring Boot, FastAPI, PostgreSQL, and MongoDB. On the frontend I work with React, TypeScript, and Tailwind CSS, backed by a Front End Web Developer Nanodegree from Udacity.</p>
+        <p>I've built full systems end to end, from an AI-powered POS platform to a freelance steering-wheel configurator for a real client. I enjoy working in teams, solving problems, and keep improving across the full stack.</p>
+        <div class="soft-skills">
+          <h3>Soft Skills</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Problem Solving</span>
+            <span class="skill-tag">Critical Thinking</span>
+            <span class="skill-tag">Time Management</span>
+            <span class="skill-tag">Team Collaboration</span>
+            <span class="skill-tag">Leadership</span>
+            <span class="skill-tag">Communication</span>
+            <span class="skill-tag">Working Under Pressure</span>
+            <span class="skill-tag">Adaptability</span>
+          </div>
+        </div>
       </div>
       <div class="about-info">
         <div class="info-item"><span class="info-label">Location</span><span class="info-val">Ramallah, Palestine</span></div>
         <div class="info-item"><span class="info-label">Email</span><span class="info-val"><a href="mailto:moathmouadi4@gmail.com">moathmouadi4@gmail.com</a></span></div>
-        <div class="info-item"><span class="info-label">Phone</span><span class="info-val">+972-568082707</span></div>
-        <div class="info-item"><span class="info-label">GitHub</span><span class="info-val">MoathMalk</span></div>
-        <div class="info-item"><span class="info-label">LinkedIn</span><span class="info-val">moathmouadi</span></div>
-        <div class="info-item"><span class="info-label">Languages</span><span class="info-val">Arabic (Native) · English (Good)</span></div>
+        <div class="info-item"><span class="info-label">Phone</span><span class="info-val"><a href="tel:+972568082707">+972-568082707</a></span></div>
+        <div class="info-item"><span class="info-label">GitHub</span><span class="info-val"><a href="https://github.com/MoathMalki" target="_blank" rel="noopener">MoathMalki</a></span></div>
+        <div class="info-item"><span class="info-label">LinkedIn</span><span class="info-val"><a href="https://www.linkedin.com/in/moath-mouadi-13592a372/" target="_blank" rel="noopener">moath-mouadi</a></span></div>
+        <div class="info-item"><span class="info-label">Languages</span><span class="info-val">Arabic (Native), English (Good)</span></div>
       </div>
     </div>
   </div>
@@ -269,7 +236,7 @@
     <div class="skills-grid">
       <div class="skill-category">
         <div class="skill-cat-name">Languages</div>
-        <div class="skill-tags"><span class="skill-tag">Java</span><span class="skill-tag">JavaScript</span><span class="skill-tag">Python</span></div>
+        <div class="skill-tags"><span class="skill-tag">Java</span><span class="skill-tag">JavaScript</span><span class="skill-tag">TypeScript</span><span class="skill-tag">Python</span></div>
       </div>
       <div class="skill-category">
         <div class="skill-cat-name">Frameworks</div>
@@ -277,19 +244,28 @@
       </div>
       <div class="skill-category">
         <div class="skill-cat-name">Web Technologies</div>
-        <div class="skill-tags"><span class="skill-tag">HTML5</span><span class="skill-tag">CSS3</span><span class="skill-tag">REST APIs</span><span class="skill-tag">PHP</span></div>
+        <div class="skill-tags"><span class="skill-tag">HTML5</span><span class="skill-tag">CSS3</span><span class="skill-tag">Tailwind CSS</span><span class="skill-tag">REST APIs</span><span class="skill-tag">PHP</span></div>
       </div>
       <div class="skill-category">
         <div class="skill-cat-name">Databases</div>
-        <div class="skill-tags"><span class="skill-tag">PostgreSQL</span><span class="skill-tag">MongoDB</span><span class="skill-tag">MySQL</span></div>
+        <div class="skill-tags"><span class="skill-tag">PostgreSQL</span><span class="skill-tag">MySQL</span><span class="skill-tag">MongoDB</span><span class="skill-tag">Flyway</span><span class="skill-tag">phpMyAdmin (XAMPP)</span></div>
       </div>
       <div class="skill-category">
-        <div class="skill-cat-name">Tools & QA</div>
-        <div class="skill-tags"><span class="skill-tag">Git</span><span class="skill-tag">GitHub</span><span class="skill-tag">Postman</span><span class="skill-tag">Selenium</span><span class="skill-tag">PowerBI</span><span class="skill-tag">Trello</span></div>
+        <div class="skill-cat-name">Tools</div>
+        <div class="skill-tags"><span class="skill-tag">Git</span><span class="skill-tag">GitHub</span><span class="skill-tag">Postman</span><span class="skill-tag">Trello</span><span class="skill-tag">Power BI</span><span class="skill-tag">Linux (Basic)</span></div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-name">Testing & QA</div>
+        <div class="skill-tags"><span class="skill-tag">Black-Box Testing</span><span class="skill-tag">White-Box Testing</span><span class="skill-tag">Selenium</span><span class="skill-tag">API Testing</span></div>
       </div>
       <div class="skill-category">
         <div class="skill-cat-name">Data Science</div>
-        <div class="skill-tags"><span class="skill-tag">Data Preprocessing</span><span class="skill-tag">EDA</span><span class="skill-tag">Data Cleaning</span></div>
+        <div class="skill-tags"><span class="skill-tag">Data Preprocessing</span><span class="skill-tag">Data Cleaning</span><span class="skill-tag">Missing Values</span><span class="skill-tag">EDA</span></div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-name">AI-Assisted Development</div>
+        <div class="skill-tags"><span class="skill-tag">GitHub Copilot</span><span class="skill-tag">Cursor</span><span class="skill-tag">ChatGPT</span><span class="skill-tag">Claude</span></div>
+        <p class="skill-note">Used for code generation, debugging, and faster development across projects.</p>
       </div>
     </div>
   </div>
@@ -300,30 +276,56 @@
     <div class="section-label">03 / Projects</div>
     <h2 class="section-title">Featured Projects</h2>
     <div class="projects-grid">
+
       <div class="project-card">
-        <div class="project-num">001</div>
-        <div class="project-name">RetailMind POS System</div>
-        <div class="project-desc">Full POS system with AI-powered forecasting, product recommendations, and RAG-based customer service. Handles products, inventory, orders, and role-based access.</div>
-        <div class="project-stack"><span class="stack-tag">Spring Boot</span><span class="stack-tag">FastAPI</span><span class="stack-tag">PostgreSQL</span><span class="stack-tag">React</span><span class="stack-tag">AI/ML</span></div>
+        <div class="project-top"><div class="project-num">001</div><span class="project-badge">Freelance</span></div>
+        <div class="project-name">CarZone – Steering Wheel Configurator</div>
+        <div class="project-desc">Full-stack platform for customizing steering wheels, with dynamic pricing and vehicle-specific configurations.</div>
+        <ul class="project-points">
+          <li>Built responsive customer and admin interfaces backed by REST APIs and PostgreSQL.</li>
+          <li>Real-time configuration workflows with interactive 3D visualization of each design.</li>
+          <li>Working directly with the client to turn requirements into production-ready features.</li>
+        </ul>
+        <div class="project-stack"><span class="stack-tag">React</span><span class="stack-tag">TypeScript</span><span class="stack-tag">Tailwind CSS</span><span class="stack-tag">Spring Boot</span><span class="stack-tag">PostgreSQL</span><span class="stack-tag">3D</span></div>
       </div>
+
       <div class="project-card">
-        <div class="project-num">002</div>
-        <div class="project-name">Human Rights Monitor</div>
-        <div class="project-desc">Management Information System for tracking and reporting human rights violations. Built with a modular architecture, RESTful APIs, and a responsive React frontend.</div>
+        <div class="project-top"><div class="project-num">002</div></div>
+        <div class="project-name">RetailMind POS System</div>
+        <div class="project-desc">Full point-of-sale system with AI services for forecasting, recommendations, and customer support.</div>
+        <ul class="project-points">
+          <li>Spring Boot backend for products, inventory, orders, offers, and role-based access.</li>
+          <li>Forecasting, recommendation, and RAG-based customer service modules in Python + FastAPI.</li>
+          <li>PostgreSQL with versioned schema migrations using Flyway; endpoints tested with Postman.</li>
+          <li>Backend and AI services integrated with a React frontend via RESTful APIs.</li>
+        </ul>
+        <div class="project-stack"><span class="stack-tag">Spring Boot</span><span class="stack-tag">FastAPI</span><span class="stack-tag">PostgreSQL</span><span class="stack-tag">Flyway</span><span class="stack-tag">React</span><span class="stack-tag">AI / RAG</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top"><div class="project-num">003</div></div>
+        <div class="project-name">Human Rights Monitor (MIS)</div>
+        <div class="project-desc">Management information system for reporting and tracking human rights violations.</div>
+        <ul class="project-points">
+          <li>FastAPI backend with MongoDB for reports, users, and system data.</li>
+          <li>Responsive React frontend for submitting and viewing violation reports.</li>
+          <li>Modular structure with clear backend/frontend separation and documented REST endpoints.</li>
+        </ul>
         <div class="project-stack"><span class="stack-tag">FastAPI</span><span class="stack-tag">MongoDB</span><span class="stack-tag">React</span></div>
       </div>
+
       <div class="project-card">
-        <div class="project-num">003</div>
+        <div class="project-top"><div class="project-num">004</div></div>
         <div class="project-name">Birzeit Flat Rent System</div>
-        <div class="project-desc">Comprehensive flat rental management with three user roles. Features advanced search, image uploads, messaging system, and appointment scheduling.</div>
+        <div class="project-desc">Flat rental management system with three user roles: Customer, Owner, and Manager.</div>
+        <ul class="project-points">
+          <li>Normalized MySQL database with 12+ related tables, using PDO prepared statements.</li>
+          <li>Secure authentication with PHP sessions, password hashing, and role-based access.</li>
+          <li>Advanced search, image uploads, messaging, and appointment scheduling.</li>
+        </ul>
         <div class="project-stack"><span class="stack-tag">PHP</span><span class="stack-tag">JavaScript</span><span class="stack-tag">MySQL</span><span class="stack-tag">HTML5</span><span class="stack-tag">CSS3</span></div>
       </div>
-      <div class="project-card">
-        <div class="project-num">004</div>
-        <div class="project-name">Garage Services System</div>
-        <div class="project-desc">Android mobile application for garage services with PHP backend. Designed normalized database schema and built intuitive Android UI screens with REST API integration.</div>
-        <div class="project-stack"><span class="stack-tag">PHP</span><span class="stack-tag">Java</span><span class="stack-tag">MySQL</span><span class="stack-tag">Android</span></div>
-      </div>
+
     </div>
   </div>
 </section>
@@ -338,7 +340,7 @@
     </div>
     <div class="edu-card">
       <div class="edu-dot" style="background: var(--accent2);"></div>
-      <div><div class="edu-name">Udacity · Palestine Launchpad × Google</div><div class="edu-degree">Front End Web Developer Nanodegree</div><div class="edu-date">2025 · Certification</div></div>
+      <div><div class="edu-name">Udacity · Palestine Launchpad with Google</div><div class="edu-degree">Front End Web Developer Nanodegree</div><div class="edu-date">2025 · Certification</div></div>
     </div>
     <div class="edu-card">
       <div class="edu-dot" style="background: #555;"></div>
@@ -353,31 +355,22 @@
     <h2 class="section-title">Get In Touch</h2>
     <div class="contact-grid">
       <div class="contact-text">
-        <p style="margin-bottom:1rem;">I'm currently open to new opportunities and collaborations. Whether you have a project in mind, a question, or just want to connect — feel free to reach out!</p>
+        <p style="margin-bottom:1rem;">I'm open to junior backend or full-stack roles, freelance projects, and collaborations. If you have a project in mind or a question, feel free to reach out.</p>
         <p>Based in Ramallah, Palestine. Available for remote work worldwide.</p>
       </div>
       <div class="contact-links">
         <a href="mailto:moathmouadi4@gmail.com" class="contact-link">
           <div class="contact-link-icon">✉</div>
-         <div>
-  <div class="contact-link-label">Email</div>
-  moathmouadi4@gmail.com
-</div>
+          <div><div class="contact-link-label">Email</div>moathmouadi4@gmail.com</div>
         </a>
-       <a href="https://github.com/MoathMalki" class="contact-link" target="_blank">
+        <a href="https://github.com/MoathMalki" class="contact-link" target="_blank" rel="noopener">
           <div class="contact-link-icon">⌥</div>
-         <div>
-  <div class="contact-link-label">GitHub</div>
-  github.com/MoathMalki
-</div>
+          <div><div class="contact-link-label">GitHub</div>github.com/MoathMalki</div>
         </a>
-      <a href="https://www.linkedin.com/in/moath-mouadi-13592a372/" class="contact-link" target="_blank">
-  <div class="contact-link-icon" style="font-family:'Space Mono',monospace; font-size:11px; font-weight:700;">in</div>
-  <div>
-    <div class="contact-link-label">LinkedIn</div>
-    linkedin.com/in/moath-mouadi-13592a372
-  </div>
-</a>
+        <a href="https://www.linkedin.com/in/moath-mouadi-13592a372/" class="contact-link" target="_blank" rel="noopener">
+          <div class="contact-link-icon" style="font-family:'Space Mono',monospace; font-size:11px; font-weight:700;">in</div>
+          <div><div class="contact-link-label">LinkedIn</div>linkedin.com/in/moath-mouadi-13592a372</div>
+        </a>
         <a href="tel:+972568082707" class="contact-link">
           <div class="contact-link-icon">☏</div>
           <div><div class="contact-link-label">Phone</div>+972-568082707</div>
@@ -391,4 +384,5 @@
   <span>© 2026 Moath Jehad Mouadi · Built with passion from Ramallah, Palestine</span>
 </footer>
 
-<
+</body>
+</html>
